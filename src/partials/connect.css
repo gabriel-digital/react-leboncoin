@@ -1,0 +1,15 @@
+.signupContainer {
+  flex-direction: row-reverse;
+}
+.signupContainer div {
+  flex: 3 1;
+}
+.signupContainer form {
+  flex: 2 1;
+  display: flex;
+  flex-direction: column;
+}
+.signupContainer div span {
+  display: block;
+  font-weight: 500;
+}

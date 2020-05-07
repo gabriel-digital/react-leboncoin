@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      <main>
-        <Link to="/offers/">go to offers</Link>
-        <br />
-        <Link to="/offer/toto">go to offer</Link>
-      </main>
+      <section>
+        <ul style={{ textAlign: "center", lineHeight: 2.5 }}>
+          <li>
+            <Link to="/offers/">voir les offres</Link>
+          </li>
+          <li>
+            <Link to="/user/sign_up">créer un compte</Link>
+          </li>
+        </ul>
+      </section>
     </>
   );
 };

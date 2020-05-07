@@ -55,6 +55,7 @@ nav button:last-of-type:hover:after {
 nav button svg {
   margin-right: 10px;
 }
+a.connect,
 button.connect {
   display: flex;
   flex-direction: column;
@@ -62,4 +63,5 @@ button.connect {
   align-items: center;
   border: none;
   font-size: 1em;
+  color: #000;
 }

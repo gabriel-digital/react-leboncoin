@@ -37,7 +37,7 @@ const Offers = () => {
             <input type="submit" value="Rechercher" />
           </form>
         </section>
-        <section className="results">
+        <div className="results">
           <ul className="container">
             {data.offers.map((offer, index) => {
               return (
@@ -55,9 +55,8 @@ const Offers = () => {
               );
             })}
           </ul>
-        </section>
+        </div>
       </main>
-      <Link to="/offer/89894389483989">go to offer</Link>
     </>
   );
 };

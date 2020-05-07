@@ -1,17 +1,7 @@
 @import url(./partials/reset.css);
+@import url(./partials/global.css);
 @import url(./partials/header.css);
 @import url(./partials/search.css);
 @import url(./partials/offers.css);
+@import url(./partials/connect.css);
 @import url(./partials/footer.css);
-
-#root {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  background-color: #fafafa;
-}
-
-a {
-  text-decoration: none;
-}
