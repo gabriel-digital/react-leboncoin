@@ -1,6 +1,7 @@
 header {
   background-color: #fff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
 }
 header .container {
   display: flex;
@@ -22,20 +23,20 @@ nav button {
   font-size: 1em;
 }
 nav button:first-of-type {
-  background-color: #f56b2a;
+  background-color: var(--main-color);
   border-radius: 5px;
   color: #fff;
   transition: background-color 0.1s ease-in-out;
 }
 nav button:first-of-type:hover {
-  background-color: #c0562a;
+  background-color: var(--main-color-hover);
 }
 nav button:last-of-type {
   position: relative;
   background-color: transparent;
 }
 nav button:last-of-type:after {
-  border-bottom: 3px solid #ff6e14;
+  border-bottom: 3px solid var(--main-color);
   bottom: -14px;
   content: "";
   display: block;

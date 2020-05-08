@@ -5,20 +5,15 @@
   height: 100vh;
   background-color: #fafafa;
   --text-color: #000;
-}
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --main-color: #f56b2a;
+  --main-color-hover: #c0562a;
+  --secondary-color: #4183d7;
+  --secondary-color-hover: #369;
+  --alt-text-color: #fff;
+
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
-}
-
-a,
-a:visited,
-a:active,
-a:focus {
-  text-decoration: none;
-  color: var(--text-color);
 }
 
 section {
@@ -32,6 +27,7 @@ section {
   padding: 30px 40px;
   line-height: 30px;
   background-color: #ffffff;
+  border-radius: 5px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -41,4 +37,78 @@ form {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+/* text */
+a,
+a:visited,
+a:active,
+a:focus {
+  text-decoration: none;
+  color: var(--text-color);
+}
+h1 {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  border-bottom: 3px solid var(--main-color);
+  text-align: center;
+}
+/* buttons */
+.action {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin: 30px 0 20px;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  text-align: center;
+  color: var(--alt-text-color);
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+}
+.action:hover {
+  background-color: var(--secondary-color-hover);
+}
+.action.reverse {
+  background-color: #fff;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+.action.reverse:hover {
+  color: var(--secondary-color-hover);
+  border: 1px solid var(--secondary-color-hover);
+}
+/* forms */
+label {
+  width: 100%;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+label.checkbox {
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.5em;
+  font-size: 0.9em;
+}
+label.checkbox input {
+  position: absolute;
+  left: 0;
+}
+input {
+  width: 100%;
+  padding: 0 10px;
+  background: #ffffff;
+  border: 1px solid #d9e0eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 40px;
+  color: #9ca3ad;
+}
+span.error {
+  display: block;
+  color: red;
 }

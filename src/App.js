@@ -13,10 +13,10 @@ import UserLogIn from "./containers/UserLogIn";
 
 function App() {
   const tokenFromCookie = Cookies.get("UserToken");
-  const [user, setUser] = useState(tokenFromCookie || "");
+  const [user, setUser] = useState();
   return (
     <Router>
-      <Header user={user} setUser={setUser} token={tokenFromCookie} />
+      <Header user={user} setUser={setUser} tokenFromCookie={tokenFromCookie} />
       <Switch>
         <Route path="/offer/:id">
           <Offer />

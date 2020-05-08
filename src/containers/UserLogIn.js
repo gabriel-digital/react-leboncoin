@@ -7,7 +7,9 @@ const UserLogIn = ({ setUser }) => {
   // init states & history
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const history = useHistory();
+
   // server request
   const fetchdata = async (email, password) => {
     try {
@@ -18,52 +20,38 @@ const UserLogIn = ({ setUser }) => {
           password: password,
         }
       );
-      // update user state & create cookie after answer from server
-      setUser({ username: response.data.username, token: response.data.token });
+      // create cookie after answer from server & update user state
       Cookies.set("UserToken", response.data.token, { expires: 3000 });
-
+      setUser({ username: response.data.username });
       // redirect user to home page
       history.push("/");
     } catch (error) {
-      console.log(error.response);
+      setError(error.response.data.error.message);
     }
-  };
-  // handle email
-  const handleEmail = (value) => {
-    setEmail(value);
-  };
-  // handle email
-  const handlePassword = (value) => {
-    setPassword(value);
   };
 
   // handle submit form
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!email || !password) {
-      alert("Veuillez remplir tous les champs");
+      setError("Veuillez remplir tous les champs");
     } else {
       fetchdata(email, password);
     }
   };
   return (
-    <>
-      <section className="loginContainter">
+    <section className="loginContainter">
+      <div className="connectForm">
         <h1>Connexion</h1>
-        <form
-          onSubmit={(event) => {
-            handleSubmit(event);
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <label>
             Adresse email
             <input
-              type="email"
+              type="text"
               value={email}
               onChange={(event) => {
-                handleEmail(event.target.value);
+                setEmail(event.target.value);
               }}
-              required
             />
           </label>
           <label>
@@ -72,19 +60,21 @@ const UserLogIn = ({ setUser }) => {
               type="password"
               value={password}
               onChange={(event) => {
-                handlePassword(event.target.value);
+                setPassword(event.target.value);
               }}
-              required
             />
           </label>
-          <input type="submit" value="Se connecter" />
+          <input type="submit" value="Se connecter" className="action" />
+          {error && <span className="error">{error}</span>}
         </form>
-      </section>
-      <section className="noAccount">
+      </div>
+      <div className="noAccount">
         <h2>Vous n'avez pas de compte</h2>
-        <Link to="/user/sign_up">Créer un compte</Link>
-      </section>
-    </>
+        <Link to="/user/sign_up" className="action reverse">
+          Créer un compte
+        </Link>
+      </div>
+    </section>
   );
 };
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { logo, pictoPlus, pictoSearch, pictoUser } from "../pictos";
 
-const Header = ({ user, setUser, token }) => {
+const Header = ({ user, setUser, tokenFromCookie }) => {
   return (
     <header>
       <div className="container">
@@ -18,7 +18,7 @@ const Header = ({ user, setUser, token }) => {
             Rechercher
           </button>
         </nav>
-        {!user.token ? (
+        {!tokenFromCookie ? (
           <Link to="/user/log_in" className="connect">
             {pictoUser(20, 20, "black")}Se connecter
           </Link>
