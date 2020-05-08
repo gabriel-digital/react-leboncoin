@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
+import axios from "axios";
 
-const UserSignUp = () => {
+const UserSignUp = ({ setUser }) => {
   // init states
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -8,10 +11,33 @@ const UserSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [optin, setOptin] = useState(false);
+  const history = useHistory();
+
+  // server request
+  const fetchData = async (username, email, password) => {
+    try {
+      const response = await axios.post(
+        "https://lbc-exo.herokuapp.com/user/sign_up",
+        {
+          username: username,
+          email: email,
+          password: password,
+        }
+      );
+      // create cookie after answer from server & update user state
+      Cookies.set("UserToken", response.data.token, { expires: 3000 });
+      setUser({ username: response.data.username });
+      // redirect user to home page
+      history.push("/");
+    } catch (error) {
+      setError(error.response.data.error.message);
+    }
+  };
 
   //handle form submit
   const handleSubmitForm = (event) => {
     event.preventDefault();
+    // check we ahve all data needed & correct
     if (!username || !email || !password || !confirmPassword) {
       setError("tous les champs sont obligatoires");
     } else if (password !== confirmPassword) {
@@ -20,15 +46,15 @@ const UserSignUp = () => {
       setError(
         "Veuillez accepter les Conditions Générales de Ventes et les Conditions Générales d'Utilisation"
       );
-    } else {
-      alert(
-        `All good ! \n username : ${username}\n email : ${email}\n password : ${password}\n confirmation : ${confirmPassword}\n optin : ${optin}`
-      );
+    }
+    // everything's fine, call server request !
+    else {
+      fetchData(username, email, password);
     }
   };
   return (
     <section className="signupContainer">
-      <div>
+      <div className="whySignup">
         <span>Pourquoi créer un compte ?</span>
         <ul>
           <li>
@@ -97,8 +123,8 @@ const UserSignUp = () => {
               setOptin(!optin);
             }}
           />
-          « J’accepte les Conditions Générales de Vente et  les Conditions
-          Générales d’Utilisation »
+          « J’accepte les <strong>Conditions Générales de Vente</strong> et{" "}
+          <strong>les Conditions Générales d’Utilisation</strong> »
         </label>
         {error && <span className="error">{error}</span>}
         <input

@@ -10,6 +10,7 @@ header .container {
   max-width: 1024px;
   height: 60px;
   margin: 0 auto;
+  padding: 5px 20px;
 }
 nav {
   display: flex;
@@ -35,6 +36,23 @@ nav button:last-of-type {
   position: relative;
   background-color: transparent;
 }
+
+nav button svg {
+  margin-right: 10px;
+}
+a.connect,
+button.connect {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 1em;
+  color: #000;
+}
+a.connect:after,
+button.connect:after,
 nav button:last-of-type:after {
   border-bottom: 3px solid var(--main-color);
   bottom: -14px;
@@ -47,22 +65,15 @@ nav button:last-of-type:after {
   transform: translateX(-50%);
   width: 0;
 }
+a.connect:hover:after,
+button.connect:hover:after,
 nav button:last-of-type:hover:after {
   opacity: 1;
   transition-property: width, opacity;
   transition: 0.3s ease-out;
   width: 100%;
 }
-nav button svg {
-  margin-right: 10px;
-}
-a.connect,
-button.connect {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  font-size: 1em;
-  color: #000;
+a.connect:after,
+button.connect:after {
+  bottom: -9px;
 }

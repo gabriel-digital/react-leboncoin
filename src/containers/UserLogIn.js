@@ -11,7 +11,7 @@ const UserLogIn = ({ setUser }) => {
   const history = useHistory();
 
   // server request
-  const fetchdata = async (email, password) => {
+  const fetchData = async (email, password) => {
     try {
       const response = await axios.post(
         "https://lbc-exo.herokuapp.com/user/log_in",
@@ -33,10 +33,13 @@ const UserLogIn = ({ setUser }) => {
   // handle submit form
   const handleSubmit = (event) => {
     event.preventDefault();
+    // check we have all rquired data
     if (!email || !password) {
       setError("Veuillez remplir tous les champs");
-    } else {
-      fetchdata(email, password);
+    }
+    // everything's fine, call server request !
+    else {
+      fetchData(email, password);
     }
   };
   return (

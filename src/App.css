@@ -1,7 +1,7 @@
-@import url(./partials/reset.css);
-@import url(./partials/global.css);
-@import url(./partials/header.css);
-@import url(./partials/search.css);
-@import url(./partials/offers.css);
-@import url(./partials/connect.css);
-@import url(./partials/footer.css);
+@import url(./assets/css/partials/reset.css);
+@import url(./assets/css/partials/global.css);
+@import url(./assets/css/partials/header.css);
+@import url(./assets/css/partials/search.css);
+@import url(./assets/css/partials/offers.css);
+@import url(./assets/css/partials/connect.css);
+@import url(./assets/css/partials/footer.css);

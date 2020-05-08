@@ -17,23 +17,25 @@ function App() {
   return (
     <Router>
       <Header user={user} setUser={setUser} tokenFromCookie={tokenFromCookie} />
-      <Switch>
-        <Route path="/offer/:id">
-          <Offer />
-        </Route>
-        <Route path="/offers">
-          <Offers />
-        </Route>
-        <Route path="/user/sign_up">
-          <UserSignUp />
-        </Route>
-        <Route path="/user/log_in">
-          <UserLogIn user={user} setUser={setUser} />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <main>
+        <Switch>
+          <Route path="/offer/:id">
+            <Offer />
+          </Route>
+          <Route path="/offers">
+            <Offers />
+          </Route>
+          <Route path="/user/sign_up">
+            <UserSignUp setUser={setUser} />
+          </Route>
+          <Route path="/user/log_in">
+            <UserLogIn setUser={setUser} />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </main>
       <Footer />
     </Router>
   );

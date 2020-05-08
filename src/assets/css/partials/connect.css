@@ -1,0 +1,64 @@
+/* signup */
+.signupContainer {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.signupContainer div.whySignup {
+  flex: 3 1;
+  margin-right: 50px;
+}
+.signupContainer form {
+  flex: 2 1;
+  display: flex;
+  flex-direction: column;
+}
+.whySignup > span {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+}
+.whySignup ul li {
+  line-height: 1.5em;
+  font-size: 0.9em;
+  margin-bottom: 30px;
+  padding-left: 50px;
+}
+.whySignup ul li span {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.whySignup ul li:first-child {
+  background: url(../../images/schedule_24px.svg) left center no-repeat;
+}
+.whySignup ul li:nth-child(2) {
+  background: url(../../images/notifications_none_24px.svg) left center
+    no-repeat;
+}
+.whySignup ul li:last-child {
+  background: url(../../images/remove_red_eye_24px.svg) left center no-repeat;
+}
+/* login */
+.loginContainter {
+  position: relative;
+  max-width: 715px;
+  padding: 20px 75px;
+}
+.loginContainter div {
+  width: 100%;
+}
+.loginContainter > div.connectForm:after {
+  position: absolute;
+  left: 0;
+  content: "";
+  width: 100%;
+  border-bottom: 1px solid #e4e8ec;
+}
+.loginContainter div.noAccount {
+  text-align: center;
+  padding-top: 20px;
+}
