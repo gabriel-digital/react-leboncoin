@@ -33,7 +33,7 @@ const Offers = () => {
   // call server request once
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, []);
 
   return loading ? (
     <main>
