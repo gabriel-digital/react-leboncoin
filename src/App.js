@@ -14,28 +14,27 @@ import UserLogIn from "./containers/UserLogIn";
 function App() {
   const tokenFromCookie = Cookies.get("UserToken");
   const [user, setUser] = useState();
+
   return (
     <Router>
       <Header user={user} setUser={setUser} tokenFromCookie={tokenFromCookie} />
-      <main>
-        <Switch>
-          <Route path="/offer/:id">
-            <Offer />
-          </Route>
-          <Route path="/offers">
-            <Offers />
-          </Route>
-          <Route path="/user/sign_up">
-            <UserSignUp setUser={setUser} />
-          </Route>
-          <Route path="/user/log_in">
-            <UserLogIn setUser={setUser} />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </main>
+      <Switch>
+        <Route path="/offer/:id">
+          <Offer />
+        </Route>
+        <Route path="/offers">
+          <Offers />
+        </Route>
+        <Route path="/user/sign_up">
+          <UserSignUp setUser={setUser} />
+        </Route>
+        <Route path="/user/log_in">
+          <UserLogIn setUser={setUser} />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
       <Footer />
     </Router>
   );

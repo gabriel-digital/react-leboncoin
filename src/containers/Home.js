@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <>
-      <section>
-        <ul style={{ textAlign: "center", lineHeight: 2.5 }}>
-          <li>
-            <Link to="/offers/">voir les offres</Link>
-          </li>
-          <li>
-            <Link to="/user/sign_up">créer un compte</Link>
-          </li>
-        </ul>
+    <main>
+      <section className="home">
+        <Link to="/offers/" className="action">
+          Voir toutes les offres
+        </Link>
+        <Link to="/user/sign_up" className="action reverse">
+          Créer un compte
+        </Link>
       </section>
-    </>
+    </main>
   );
 };
 

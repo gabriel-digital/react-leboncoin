@@ -1,40 +1,82 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { formatPrice, formatDate } from "../utils";
+import { formatDate } from "../utils";
+import Loader from "../components/Loader";
 
 const Offers = () => {
   // init states
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState({});
+
+  let url = "https://lbc-exo.herokuapp.com/offer/with-count";
+  const setUrl = () => {
+    if (!query.title) {
+      url = `https://lbc-exo.herokuapp.com/offer/with-count`;
+    } else {
+      url = `https://lbc-exo.herokuapp.com/offer/with-count?title=${query.title}`;
+    }
+    return url;
+  };
 
   // server request
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "https://lbc-exo.herokuapp.com/offer/with-count"
-      );
+      const response = await axios.get(url);
       setData(response.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error.response.data.error.message);
     }
   };
-
   // call server request once
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
 
   return loading ? (
-    <p>chargement...</p>
+    <main>
+      <Loader />
+    </main>
   ) : (
     <>
-      <main>
+      <main className="offers">
         <section className="search">
-          <form>
-            <input type="text" placeholder="Que recherchez vous ?" />
-            <input type="submit" value="Rechercher" />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setUrl(query);
+              fetchData();
+            }}
+          >
+            <div className="mainSearch">
+              <input
+                type="text"
+                placeholder="Try something like 'cat', 'kitten, 'cute'"
+                value={query.title}
+                onChange={(event) => {
+                  setQuery({ title: event.target.value });
+                }}
+              />
+              <input type="submit" value="Rechercher" className="action" />
+            </div>
+            {/* <div className="filters">
+              <div className="price">
+                prix entre
+                <input type="text" placeholder="prix min" />
+                entre
+                <input type="text" placeholder="prix max" />
+              </div>
+              <div className="sort">
+                <select>
+                  <option selected> tri : Plus récentes</option>
+                  <option selected> tri : Plus anciennes</option>
+                  <option selected> tri : Plus chères</option>
+                  <option selected> tri : Moins chères</option>
+                </select>
+              </div>
+            </div> */}
           </form>
         </section>
         <div className="results">
@@ -43,10 +85,13 @@ const Offers = () => {
               return (
                 <li key={offer._id}>
                   <Link to={`/offer/${offer._id}`}>
+                    {offer.picture && (
+                      <img src={offer.picture.secure_url} alt={offer.title} />
+                    )}
                     <div className="offersContainer">
                       <span>{offer.title}</span>
                       <br />
-                      <span>{formatPrice(offer.price)}</span>
+                      <span>{offer.price.toFixed(0)}&nbsp;€</span>
                       <br />
                       <span>{formatDate(offer.created)}</span>
                     </div>

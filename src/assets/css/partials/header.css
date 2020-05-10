@@ -1,4 +1,6 @@
 header {
+  position: relative;
+  z-index: 1;
   background-color: #fff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
@@ -15,7 +17,7 @@ header .container {
 nav {
   display: flex;
 }
-nav button {
+nav a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,21 +25,22 @@ nav button {
   border: none;
   font-size: 1em;
 }
-nav button:first-of-type {
+nav a:nth-child(2) {
+  padding: 6px 10px;
   background-color: var(--main-color);
   border-radius: 5px;
   color: #fff;
   transition: background-color 0.1s ease-in-out;
 }
-nav button:first-of-type:hover {
+nav a:nth-child(2):hover {
   background-color: var(--main-color-hover);
 }
-nav button:last-of-type {
+nav a:last-child {
   position: relative;
   background-color: transparent;
 }
 
-nav button svg {
+nav a svg {
   margin-right: 10px;
 }
 a.connect,
@@ -53,9 +56,9 @@ button.connect {
 }
 a.connect:after,
 button.connect:after,
-nav button:last-of-type:after {
+nav a:last-child:after {
   border-bottom: 3px solid var(--main-color);
-  bottom: -14px;
+  bottom: -13px;
   content: "";
   display: block;
   left: 50%;
@@ -67,13 +70,35 @@ nav button:last-of-type:after {
 }
 a.connect:hover:after,
 button.connect:hover:after,
-nav button:last-of-type:hover:after {
+nav a:last-child:hover:after {
   opacity: 1;
   transition-property: width, opacity;
   transition: 0.3s ease-out;
   width: 100%;
 }
-a.connect:after,
-button.connect:after {
-  bottom: -9px;
+a.connect.active:after,
+button.connect.active:after,
+nav a:last-child.active:after {
+  opacity: 1;
+  width: 100%;
+}
+header.isSearch:before {
+  position: absolute;
+  z-index: -2;
+  content: "";
+  width: 100%;
+  height: 400%;
+  background-color: var(--main-color);
+  border-radius: 40%;
+  top: -90%;
+}
+header.isSearch:after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  content: "";
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }

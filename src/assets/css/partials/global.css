@@ -2,20 +2,41 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
   --text-color: #000;
   --main-color: #f56b2a;
   --main-color-hover: #c0562a;
   --secondary-color: #4183d7;
   --secondary-color-hover: #369;
   --alt-text-color: #fff;
-
+  background-color: #fafafa;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
 }
+div.container {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+div.container > main {
+  width: 70%;
+  margin-right: 20px;
+  padding: 0;
+}
+div.container > aside {
+  width: calc(30% - 20px);
+}
 main {
+  z-index: 1;
   padding: 5px 20px;
+}
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 section {
   display: flex;
@@ -56,6 +77,7 @@ h1 {
   text-align: center;
 }
 /* buttons */
+a.action,
 .action {
   display: block;
   width: 100%;
@@ -103,15 +125,19 @@ label.checkbox input {
 label.checkbox strong {
   color: var(--secondary-color);
 }
-input {
+input,
+select {
   width: 100%;
   padding: 0 10px;
   background: #ffffff;
-  border: 1px solid #d9e0eb;
   box-sizing: border-box;
   border-radius: 5px;
   height: 40px;
-  color: #9ca3ad;
+  background-color: #f4f6f7;
+  font-size: 1em;
+  line-height: 40px;
+  color: #8191a0;
+  border: none;
 }
 span.error {
   display: block;

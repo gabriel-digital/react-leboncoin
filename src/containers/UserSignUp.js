@@ -53,87 +53,89 @@ const UserSignUp = ({ setUser }) => {
     }
   };
   return (
-    <section className="signupContainer">
-      <div className="whySignup">
-        <span>Pourquoi créer un compte ?</span>
-        <ul>
-          <li>
-            <span>Gagnez du temps </span>Publiez vos annonces rapidement, avec
-            vos informations pré-remplies chaque fois que vous souhaitez déposer
-            une nouvelle annonce.
-          </li>
-          <li>
-            <span>Soyez les premiers informés</span>Créez des alertes Immo ou
-            Emploi et ne manquez jamais l’annonce qui vous intéresse.
-          </li>
-          <li>
-            <span>Visibilité</span>Suivez les statistiques de vos annonces
-            (nombre de fois où votre annonce a été vue, nombre de contacts
-            reçus).
-          </li>
-        </ul>
-      </div>
-      <form onSubmit={handleSubmitForm}>
-        <h1>Créer un compte</h1>
-        <label>
-          Username *
+    <main>
+      <section className="signupContainer">
+        <div className="whySignup">
+          <span>Pourquoi créer un compte ?</span>
+          <ul>
+            <li>
+              <span>Gagnez du temps </span>Publiez vos annonces rapidement, avec
+              vos informations pré-remplies chaque fois que vous souhaitez
+              déposer une nouvelle annonce.
+            </li>
+            <li>
+              <span>Soyez les premiers informés</span>Créez des alertes Immo ou
+              Emploi et ne manquez jamais l’annonce qui vous intéresse.
+            </li>
+            <li>
+              <span>Visibilité</span>Suivez les statistiques de vos annonces
+              (nombre de fois où votre annonce a été vue, nombre de contacts
+              reçus).
+            </li>
+          </ul>
+        </div>
+        <form onSubmit={handleSubmitForm}>
+          <h1>Créer un compte</h1>
+          <label>
+            Username *
+            <input
+              type="text"
+              value={username}
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Email *
+            <input
+              type="text"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Mot de passe *
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Confirmer le mot de passe *
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => {
+                setConfirmPassword(event.target.value);
+              }}
+            />
+          </label>
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              value={optin}
+              onChange={() => {
+                setOptin(!optin);
+              }}
+            />
+            « J’accepte les <strong>Conditions Générales de Vente</strong> et{" "}
+            <strong>les Conditions Générales d’Utilisation</strong> »
+          </label>
+          {error && <span className="error">{error}</span>}
           <input
-            type="text"
-            value={username}
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
+            type="submit"
+            value="Créer mon compte personnel"
+            className="action"
           />
-        </label>
-        <label>
-          Email *
-          <input
-            type="text"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </label>
-        <label>
-          Mot de passe *
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </label>
-        <label>
-          Confirmer le mot de passe *
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(event) => {
-              setConfirmPassword(event.target.value);
-            }}
-          />
-        </label>
-        <label className="checkbox">
-          <input
-            type="checkbox"
-            value={optin}
-            onChange={() => {
-              setOptin(!optin);
-            }}
-          />
-          « J’accepte les <strong>Conditions Générales de Vente</strong> et{" "}
-          <strong>les Conditions Générales d’Utilisation</strong> »
-        </label>
-        {error && <span className="error">{error}</span>}
-        <input
-          type="submit"
-          value="Créer mon compte personnel"
-          className="action"
-        />
-      </form>
-    </section>
+        </form>
+      </section>
+    </main>
   );
 };
 

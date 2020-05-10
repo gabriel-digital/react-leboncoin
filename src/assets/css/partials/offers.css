@@ -1,13 +1,13 @@
+/* offers list */
 .results .container {
-  max-width: 1024px;
+  max-width: 918px;
   margin: 0 auto;
 }
 .results ul li a {
   position: relative;
   display: flex;
   height: 180px;
-  padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   background-color: #fff;
   color: #000;
   box-shadow: 1px 1px 8px 1px #e6ebef;
@@ -16,4 +16,119 @@
 }
 .results ul li a:hover {
   box-shadow: 1px 1px 8px 1px #cad1d9;
+}
+.results ul li a:hover img {
+  filter: brightness(1.1);
+}
+.results ul li a img {
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+.results ul li a .offersContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+}
+
+.results ul li a .offersContainer span:first-child {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.results ul li a .offersContainer span:nth-child(3) {
+  font-size: 22px;
+  line-height: 26px;
+  color: var(--main-color);
+}
+.results ul li a .offersContainer span:last-child {
+  position: relative;
+  bottom: -45px;
+  font-size: 16px;
+  line-height: 140%;
+}
+/* offer single */
+.result main section {
+  padding: 0;
+}
+.result .offerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.result .offerContainer img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.result .offerContainer .offerInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+}
+.result .offerContainer .offerInfo h1 {
+  margin-bottom: 10px;
+  text-align: left;
+  border-bottom: none;
+  font-size: 26px;
+  line-height: 30px;
+}
+.result .offerContainer .offerInfo span:nth-child(2) {
+  margin-bottom: 25px;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  color: var(--main-color);
+}
+.result .offerContainer .offerInfo span:nth-child(3) {
+  font-size: 1.2em;
+  line-height: 1.3em;
+}
+.result .offerDescription {
+  padding: 30px;
+}
+.result .offerDescription h2 {
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+.result .offerDescription p {
+  font-size: 1em;
+  line-height: 1.3em;
+}
+/* aside */
+aside .userContainer {
+  position: relative;
+  justify-content: stretch;
+  padding: 30px;
+}
+aside .userContainer span {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+aside .userContainer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  padding: 8px;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: #fff;
+  transition: background-color 0.1s ease-in-out;
+}
+aside .userContainer button:hover {
+  background-color: var(--main-color-hover);
+}
+aside .userContainer hr {
+  position: absolute;
+  top: 100px;
+  content: "";
+  width: 100%;
+  border-top: none;
+  border-bottom: 1px solid #e4e8ec;
 }

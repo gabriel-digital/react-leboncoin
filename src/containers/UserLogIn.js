@@ -3,13 +3,12 @@ import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const UserLogIn = ({ setUser }) => {
+const UserLogIn = ({ setUser, setPath }) => {
   // init states & history
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
-
   // server request
   const fetchData = async (email, password) => {
     try {
@@ -43,41 +42,43 @@ const UserLogIn = ({ setUser }) => {
     }
   };
   return (
-    <section className="loginContainter">
-      <div className="connectForm">
-        <h1>Connexion</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Adresse email
-            <input
-              type="text"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Mot de passe
-            <input
-              type="password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-          </label>
-          <input type="submit" value="Se connecter" className="action" />
-          {error && <span className="error">{error}</span>}
-        </form>
-      </div>
-      <div className="noAccount">
-        <h2>Vous n'avez pas de compte</h2>
-        <Link to="/user/sign_up" className="action reverse">
-          Créer un compte
-        </Link>
-      </div>
-    </section>
+    <main>
+      <section className="loginContainter">
+        <div className="connectForm">
+          <h1>Connexion</h1>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Adresse email
+              <input
+                type="text"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+            </label>
+            <label>
+              Mot de passe
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+            </label>
+            <input type="submit" value="Se connecter" className="action" />
+            {error && <span className="error">{error}</span>}
+          </form>
+        </div>
+        <div className="noAccount">
+          <h2>Vous n'avez pas de compte</h2>
+          <Link to="/user/sign_up" className="action reverse">
+            Créer un compte
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 };
 

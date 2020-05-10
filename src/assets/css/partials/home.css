@@ -1,0 +1,6 @@
+.home {
+  flex-direction: row;
+}
+.home a {
+  margin: 0 20px;
+}
