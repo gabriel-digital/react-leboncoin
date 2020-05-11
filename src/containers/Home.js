@@ -5,6 +5,8 @@ const Home = () => {
   return (
     <main>
       <section className="home">
+        <h1>Bienvenue sur leboncoin !</h1>
+        <p>Réplique codée avec React et du ❤️ pour le bootcamp LeReacteur</p>
         <Link to="/offers/" className="action">
           Voir toutes les offres
         </Link>
