@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Home from "./containers/Home";
 import Offers from "./containers/Offers";
 import Offer from "./containers/Offer";
+import Publish from "./containers/Publish";
 import UserSignUp from "./containers/UserSignUp";
 import UserLogIn from "./containers/UserLogIn";
 
@@ -17,8 +18,11 @@ function App() {
 
   return (
     <Router>
-      <Header user={user} setUser={setUser} tokenFromCookie={tokenFromCookie} />
+      <Header setUser={setUser} tokenFromCookie={tokenFromCookie} />
       <Switch>
+        <Route path="/offer/publish">
+          <Publish tokenFromCookie={tokenFromCookie} user={user} />
+        </Route>
         <Route path="/offer/:id">
           <Offer />
         </Route>

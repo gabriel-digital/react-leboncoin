@@ -3,16 +3,17 @@ import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import { logo, pictoPlus, pictoSearch, pictoUser } from "../pictos";
 
-const Header = ({ user, setUser, tokenFromCookie, path }) => {
+const Header = ({ setUser, tokenFromCookie }) => {
+  // get page we are on
   const history = useHistory();
   const location = history.location.pathname;
-  console.log(location);
+
   return (
     <header className={location === "/offers" ? "isSearch" : ""}>
       <div className="container">
         <nav>
           <Link to="/">{logo(169, 30, "#F56B2A")}</Link>
-          <Link to="/">
+          <Link to="/offer/publish">
             {pictoPlus(23, 23, "white")}
             Déposer une annonce
           </Link>

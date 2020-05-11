@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const UserLogIn = ({ setUser, setPath }) => {
+const UserLogIn = ({ setUser }) => {
   // init states & history
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

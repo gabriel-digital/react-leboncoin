@@ -126,7 +126,8 @@ label.checkbox strong {
   color: var(--secondary-color);
 }
 input,
-select {
+select,
+textarea {
   width: 100%;
   padding: 0 10px;
   background: #ffffff;
@@ -138,6 +139,13 @@ select {
   line-height: 40px;
   color: #8191a0;
   border: none;
+}
+textarea {
+  height: 80px;
+}
+input[type="file"] {
+  padding-top: 10px;
+  line-height: normal;
 }
 span.error {
   display: block;

@@ -132,3 +132,21 @@ aside .userContainer hr {
   border-top: none;
   border-bottom: 1px solid #e4e8ec;
 }
+/* publish offer */
+.publishcontainer {
+  position: relative;
+  max-width: 715px;
+  padding: 20px 75px;
+}
+.publishcontainer span.published {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+.publishcontainer span.published a {
+  text-decoration: underline;
+  color: var(--main-color);
+}
+.publishcontainer span.published a:hover {
+  color: var(--main-color-hover);
+}

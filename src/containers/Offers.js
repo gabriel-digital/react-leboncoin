@@ -27,7 +27,7 @@ const Offers = () => {
       setData(response.data);
       setLoading(false);
     } catch (error) {
-      // console.log(error.response.data.error.message);
+      console.log(error.response.data.error.message);
     }
   };
   // call server request once
@@ -79,28 +79,43 @@ const Offers = () => {
             </div> */}
           </form>
         </section>
-        <div className="results">
-          <ul className="container">
-            {data.offers.map((offer, index) => {
-              return (
-                <li key={offer._id}>
-                  <Link to={`/offer/${offer._id}`}>
-                    {offer.picture && (
-                      <img src={offer.picture.secure_url} alt={offer.title} />
-                    )}
-                    <div className="offersContainer">
-                      <span>{offer.title}</span>
-                      <br />
-                      <span>{offer.price.toFixed(0)}&nbsp;€</span>
-                      <br />
-                      <span>{formatDate(offer.created)}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+
+        {data.offers.length === 0 ? (
+          <section className="noresults">
+            <img
+              src="https://jeffersoncountyhumanesociety.net/wp-content/uploads/2016/08/sad-grey-cat.jpg"
+              alt="chat triste car pas de résultats à la recherche"
+            />
+            <h2>Il n'y a pas de résultats pour votre recherche :'(</h2>
+            <p>
+              Essayez de taper "cat", "cute" ou "kitten" dans la barre de
+              recherche
+            </p>
+          </section>
+        ) : (
+          <div className="results">
+            <ul className="container">
+              {data.offers.map((offer, index) => {
+                return (
+                  <li key={offer._id}>
+                    <Link to={`/offer/${offer._id}`}>
+                      {offer.picture && (
+                        <img src={offer.picture.secure_url} alt={offer.title} />
+                      )}
+                      <div className="offersContainer">
+                        <span>{offer.title}</span>
+                        <br />
+                        <span>{offer.price.toFixed(0)}&nbsp;€</span>
+                        <br />
+                        <span>{formatDate(offer.created)}</span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </main>
     </>
   );
