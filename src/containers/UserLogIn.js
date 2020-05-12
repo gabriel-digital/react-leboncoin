@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const UserLogIn = ({ setUser }) => {
+const UserLogIn = ({ setUser, prev, setPrev }) => {
   // init states & history
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,11 @@ const UserLogIn = ({ setUser }) => {
       Cookies.set("UserName", response.data.usernmane, { expires: 3000 });
       setUser({ username: response.data.username });
       // redirect user to home page
-      history.push("/");
+      if (!history.location.state) {
+        history.push("/");
+      } else {
+        history.push(history.location.state.from);
+      }
     } catch (error) {
       setError(error.response.data.error.message);
     }
@@ -33,6 +37,7 @@ const UserLogIn = ({ setUser }) => {
   // handle submit form
   const handleSubmit = (event) => {
     event.preventDefault();
+
     // check we have all rquired data
     if (!email || !password) {
       setError("Veuillez remplir tous les champs");
@@ -42,6 +47,7 @@ const UserLogIn = ({ setUser }) => {
       fetchData(email, password);
     }
   };
+
   return (
     <main>
       <section className="loginContainter">

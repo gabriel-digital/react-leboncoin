@@ -17,6 +17,7 @@ function App() {
   const tokenFromCookie = Cookies.get("UserToken");
   const userFromCookie = Cookies.get("UserName");
   const [user, setUser] = useState();
+  const [prev, setPrev] = useState();
 
   return (
     <Router>
@@ -41,7 +42,7 @@ function App() {
           <UserSignUp setUser={setUser} />
         </Route>
         <Route path="/user/log_in">
-          <UserLogIn setUser={setUser} />
+          <UserLogIn setUser={setUser} prev={prev} setPrev={setPrev} />
         </Route>
         <Route path="/">
           <Home />

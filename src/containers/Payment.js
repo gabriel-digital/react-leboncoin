@@ -17,7 +17,7 @@ const Payment = ({ tokenFromCookie, userFromCookie }) => {
     <Redirect
       to={{
         pathname: "user/log_in",
-        state: { from: `offer/${productId}` },
+        state: { from: `/offer/${productId}` },
       }}
     />
   ) : (

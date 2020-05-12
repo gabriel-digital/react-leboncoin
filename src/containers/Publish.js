@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Publish = ({ user, tokenFromCookie }) => {
@@ -11,6 +11,8 @@ const Publish = ({ user, tokenFromCookie }) => {
   const [error, setError] = useState("");
   const [published, setPublished] = useState(false);
   const [urlOffer, setUrlOffer] = useState(false);
+
+  const history = useHistory();
 
   // construct FormData object
   const formData = new FormData();
@@ -48,7 +50,12 @@ const Publish = ({ user, tokenFromCookie }) => {
   };
   return !tokenFromCookie ? (
     // no token ? get out !
-    <Redirect to="/user/log_in" />
+    <Redirect
+      to={{
+        pathname: "/user/log_in",
+        state: { from: history.location.pathname },
+      }}
+    />
   ) : (
     <main>
       <section className="publishcontainer">

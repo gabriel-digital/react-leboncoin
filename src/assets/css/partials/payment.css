@@ -49,3 +49,6 @@
 .result.payment .offerContainer .offerInfo .checkout > div {
   width: 100%;
 }
+.payment-confirmed span {
+  color: var(--main-color);
+}
