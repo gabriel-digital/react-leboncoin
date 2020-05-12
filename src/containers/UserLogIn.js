@@ -21,6 +21,7 @@ const UserLogIn = ({ setUser }) => {
       );
       // create cookie after answer from server & update user state
       Cookies.set("UserToken", response.data.token, { expires: 3000 });
+      Cookies.set("UserName", response.data.usernmane, { expires: 3000 });
       setUser({ username: response.data.username });
       // redirect user to home page
       history.push("/");

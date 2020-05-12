@@ -1,0 +1,51 @@
+.result.payment {
+  text-align: center;
+}
+.result.payment main {
+  width: 100%;
+  margin: 0;
+}
+.result.payment main section {
+  position: relative;
+  max-width: 715px;
+  padding: 20px 75px;
+}
+.result.payment span strong {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+.result.payment .offerContainer .offerInfo {
+  align-items: center;
+}
+.result.payment .offerContainer .offerInfo h1 {
+  text-align: center;
+}
+.result.payment .offerContainer .offerInfo button {
+  cursor: pointer;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: none;
+  font-size: 1em;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: #fff;
+  transition: background-color 0.1s ease-in-out;
+}
+.result.payment .offerContainer .offerInfo button:hover {
+  background-color: var(--main-color-hover);
+}
+.result.payment .offerContainer .offerInfo .checkout {
+  width: 70%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result.payment .offerContainer .offerInfo .checkout > div {
+  width: 100%;
+}

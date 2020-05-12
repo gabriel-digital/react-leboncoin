@@ -36,6 +36,7 @@ const Header = ({ setUser, tokenFromCookie }) => {
             className="connect"
             onClick={() => {
               Cookies.remove("UserToken");
+              Cookies.remove("UserName");
               setUser("");
             }}
           >

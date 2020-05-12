@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { formatDate } from "../utils";
 import Loader from "../components/Loader";
@@ -10,6 +10,7 @@ const Offer = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
   // call server request once
   useEffect(() => {
     // server request
@@ -57,7 +58,16 @@ const Offer = () => {
             <h2>{data.creator.account.username}</h2>
             <span>17 annonces en ligne</span>
             <hr />
-            <button>
+            <button
+              onClick={() =>
+                history.push("/payment", {
+                  productId: data._id,
+                  img: data.picture.secure_url,
+                  title: data.title,
+                  price: data.price,
+                })
+              }
+            >
               {pictoShoppingCart(24, 24, "white")}
               Acheter
             </button>
