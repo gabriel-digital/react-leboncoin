@@ -9,6 +9,7 @@ const Offer = () => {
   // init states & get params from url
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [seller, setSeller] = useState({});
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   // call server request once
@@ -17,7 +18,7 @@ const Offer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lbc-exo.herokuapp.com/offer/${id}`
+          `${process.env.REACT_APP_ENV}/offer/${id}`
         );
         setData(response.data);
         setLoading(false);
@@ -27,21 +28,21 @@ const Offer = () => {
     };
     fetchData();
   }, [id]);
-  useEffect(() => {
-    // server request
-    const fetchUser = async () => {
-      try {
-        const seller = data.creator;
-        const response = await axios.get(
-          `https://lbc-exo.herokuapp.com/user/${seller._id}`
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchUser();
-  }, [data]);
+  // useEffect(() => {
+  //   // server request
+  //   const fetchUser = async () => {
+  //     try {
+  //       const sellerToSEarch = data.creator._id;
+  //       const response = await axios.get(
+  //         `${process.env.REACT_APP_ENV}/offers/user/${sellerToSEarch}`
+  //       );
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, [data]);
 
   return loading ? (
     <main>

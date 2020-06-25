@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Redirect, Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Redirect, Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Publish = ({ user, tokenFromCookie }) => {
   // init states
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [file, setFile] = useState("");
-  const [error, setError] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [file, setFile] = useState('');
+  const [error, setError] = useState('');
   const [published, setPublished] = useState(false);
   const [urlOffer, setUrlOffer] = useState(false);
 
@@ -16,27 +16,27 @@ const Publish = ({ user, tokenFromCookie }) => {
 
   // construct FormData object
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("description", description);
-  formData.append("price", price);
-  formData.append("picture", file);
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('price', price);
+  formData.append('picture', file);
 
   // on form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     // check we ahve all the data needed
     if (!title || !description || !price || !file) {
-      setError("Veuillez remplir tous les champs");
+      setError('Veuillez remplir tous les champs');
     } else {
       try {
         // send server request
         const response = await axios.post(
-          "https://lbc-exo.herokuapp.com/offer/publish",
+          `${process.env.REACT_APP_ENV}/offer/publish`,
           formData,
           {
             headers: {
-              Authorization: "Bearer " + tokenFromCookie,
-              "Content-Type": "multipart/form-data",
+              Authorization: 'Bearer ' + tokenFromCookie,
+              'Content-Type': 'multipart/form-data',
             },
           }
         );
@@ -52,7 +52,7 @@ const Publish = ({ user, tokenFromCookie }) => {
     // no token ? get out !
     <Redirect
       to={{
-        pathname: "/user/log_in",
+        pathname: '/user/log_in',
         state: { from: history.location.pathname },
       }}
     />

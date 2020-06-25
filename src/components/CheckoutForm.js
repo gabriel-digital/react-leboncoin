@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import axios from 'axios';
 
 const CheckoutForm = ({ title, price, productId, username }) => {
   const stripe = useStripe();
@@ -23,7 +23,7 @@ const CheckoutForm = ({ title, price, productId, username }) => {
       // console.log("response from stripe     =====>  ", response);
       // on envoie ce token au backend
       const chargeRes = await axios.post(
-        "https://leboncoin-api.herokuapp.com/payment",
+        `${process.env.REACT_APP_ENV}/payment`,
         {
           token: stripeToken,
           amount: price * 100,
@@ -38,7 +38,7 @@ const CheckoutForm = ({ title, price, productId, username }) => {
         setComplete(true);
       }
     } catch (error) {
-      console.log("error   =====>  ", error.message);
+      console.log('error   =====>  ', error.message);
     }
   };
   if (complete) {

@@ -1,0 +1,39 @@
+@media screen and (max-width: 890px) {
+  header .container,
+  .container {
+    max-width: 80%;
+  }
+  header nav a:last-child {
+    margin-left: 20px;
+  }
+  header nav a:last-child span {
+    display: none;
+  }
+  header button.connect span {
+    display: none;
+  }
+  section,
+  section.home {
+    max-width: calc(80% - 80px);
+  }
+}
+@media screen and (max-width: 690px) {
+  header .container {
+    justify-content: center;
+  }
+  header nav a {
+    margin-left: 10px;
+  }
+  header nav a:nth-child(2) svg {
+    margin-right: 0;
+  }
+  header nav a:nth-child(2) span {
+    display: none;
+  }
+  .home {
+    text-align: center;
+  }
+  .home a {
+    width: 100%;
+  }
+}

@@ -10,12 +10,12 @@ const Offers = () => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState({});
 
-  let url = 'https://lbc-exo.herokuapp.com/offers/with-count';
+  let url = `${process.env.REACT_APP_ENV}/offers/with-count`;
   const setUrl = () => {
     if (!query.title) {
-      url = `https://lbc-exo.herokuapp.com/offers/with-count`;
+      url = `${process.env.REACT_APP_ENV}/offers/with-count`;
     } else {
-      url = `https://lbc-exo.herokuapp.com/offers/with-count?title=${query.title}`;
+      url = `${process.env.REACT_APP_ENV}/offers/with-count?title=${query.title}`;
     }
     return url;
   };

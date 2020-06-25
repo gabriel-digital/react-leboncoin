@@ -13,7 +13,7 @@ const UserLogIn = ({ setUser, prev, setPrev }) => {
   const fetchData = async (email, password) => {
     try {
       const response = await axios.post(
-        'https://lbc-exo.herokuapp.com/user/log_in',
+        `${process.env.REACT_APP_ENV}/user/log_in`,
         {
           email: email,
           password: password,
