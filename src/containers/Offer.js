@@ -9,7 +9,6 @@ const Offer = () => {
   // init states & get params from url
   const { id } = useParams();
   const [data, setData] = useState({});
-  const [seller, setSeller] = useState({});
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   // call server request once
