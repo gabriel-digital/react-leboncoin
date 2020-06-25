@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { formatDate } from "../utils";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { formatDate } from '../utils';
+import Loader from '../components/Loader';
 
 const Offers = () => {
   // init states
@@ -10,12 +10,12 @@ const Offers = () => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState({});
 
-  let url = "https://lbc-exo.herokuapp.com/offer/with-count";
+  let url = 'https://lbc-exo.herokuapp.com/offers/with-count';
   const setUrl = () => {
     if (!query.title) {
-      url = `https://lbc-exo.herokuapp.com/offer/with-count`;
+      url = `https://lbc-exo.herokuapp.com/offers/with-count`;
     } else {
-      url = `https://lbc-exo.herokuapp.com/offer/with-count?title=${query.title}`;
+      url = `https://lbc-exo.herokuapp.com/offers/with-count?title=${query.title}`;
     }
     return url;
   };
@@ -32,8 +32,17 @@ const Offers = () => {
   };
   // call server request once
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.response.data.error.message);
+      }
+    };
     fetchData();
-  }, []);
+  }, [url]);
 
   return loading ? (
     <main>

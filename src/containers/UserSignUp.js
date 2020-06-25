@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import Cookies from "js-cookie";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const UserSignUp = ({ setUser }) => {
   // init states
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
   const [optin, setOptin] = useState(false);
   const history = useHistory();
 
@@ -17,7 +17,7 @@ const UserSignUp = ({ setUser }) => {
   const fetchData = async (username, email, password) => {
     try {
       const response = await axios.post(
-        "https://lbc-exo.herokuapp.com/user/sign_up",
+        'https://lbc-exo.herokuapp.com/user/sign_up',
         {
           username: username,
           email: email,
@@ -25,10 +25,10 @@ const UserSignUp = ({ setUser }) => {
         }
       );
       // create cookie after answer from server & update user state
-      Cookies.set("UserToken", response.data.token, { expires: 3000 });
-      setUser({ username: response.data.username });
+      Cookies.set('UserToken', response.data.token, { expires: 3000 });
+      setUser({ username: response.data.account.username });
       // redirect user to home page
-      history.push("/");
+      history.push('/');
     } catch (error) {
       setError(error.response.data.error.message);
     }
@@ -39,9 +39,9 @@ const UserSignUp = ({ setUser }) => {
     event.preventDefault();
     // check we ahve all data needed & correct
     if (!username || !email || !password || !confirmPassword) {
-      setError("tous les champs sont obligatoires");
+      setError('tous les champs sont obligatoires');
     } else if (password !== confirmPassword) {
-      setError("les mots de passe ne sont pas identiques");
+      setError('les mots de passe ne sont pas identiques');
     } else if (!optin) {
       setError(
         "Veuillez accepter les Conditions Générales de Ventes et les Conditions Générales d'Utilisation"
@@ -124,7 +124,7 @@ const UserSignUp = ({ setUser }) => {
                 setOptin(!optin);
               }}
             />
-            « J’accepte les <strong>Conditions Générales de Vente</strong> et{" "}
+            « J’accepte les <strong>Conditions Générales de Vente</strong> et{' '}
             <strong>les Conditions Générales d’Utilisation</strong> »
           </label>
           {error && <span className="error">{error}</span>}

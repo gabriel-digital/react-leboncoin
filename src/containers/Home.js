@@ -1,11 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = (user) => {
   return (
     <main>
       <section className="home">
-        <h1>Bienvenue sur leboncoin !</h1>
+        {user.user ? (
+          <h1>Bienvenue sur LeBonCoin&nbsp;{user.user}&nbsp;!</h1>
+        ) : (
+          <h1>Bienvenue sur LeBonCoin !</h1>
+        )}
+
         <p>
           Réplique codée avec React et du&nbsp;
           <span role="img" aria-label="coeur">

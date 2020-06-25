@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import axios from "axios";
-import { formatDate } from "../utils";
-import Loader from "../components/Loader";
-import { pictoShoppingCart } from "../pictos";
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { formatDate } from '../utils';
+import Loader from '../components/Loader';
+import { pictoShoppingCart } from '../pictos';
 
 const Offer = () => {
   // init states & get params from url
@@ -27,6 +27,21 @@ const Offer = () => {
     };
     fetchData();
   }, [id]);
+  useEffect(() => {
+    // server request
+    const fetchUser = async () => {
+      try {
+        const seller = data.creator;
+        const response = await axios.get(
+          `https://lbc-exo.herokuapp.com/user/${seller._id}`
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchUser();
+  }, [data]);
 
   return loading ? (
     <main>
@@ -60,7 +75,7 @@ const Offer = () => {
             <hr />
             <button
               onClick={() =>
-                history.push("/payment", {
+                history.push('/payment', {
                   productId: data._id,
                   img: data.picture.secure_url,
                   title: data.title,
@@ -68,7 +83,7 @@ const Offer = () => {
                 })
               }
             >
-              {pictoShoppingCart(24, 24, "white")}
+              {pictoShoppingCart(24, 24, 'white')}
               Acheter
             </button>
           </section>

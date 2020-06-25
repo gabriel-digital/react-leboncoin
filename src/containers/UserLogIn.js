@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Cookies from "js-cookie";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const UserLogIn = ({ setUser, prev, setPrev }) => {
   // init states & history
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const history = useHistory();
   // server request
   const fetchData = async (email, password) => {
     try {
       const response = await axios.post(
-        "https://lbc-exo.herokuapp.com/user/log_in",
+        'https://lbc-exo.herokuapp.com/user/log_in',
         {
           email: email,
           password: password,
         }
       );
       // create cookie after answer from server & update user state
-      Cookies.set("UserToken", response.data.token, { expires: 3000 });
-      Cookies.set("UserName", response.data.usernmane, { expires: 3000 });
+      Cookies.set('UserToken', response.data.token, { expires: 3000 });
+      Cookies.set('UserName', response.data.username, { expires: 3000 });
       setUser({ username: response.data.username });
       // redirect user to home page
       if (!history.location.state) {
-        history.push("/");
+        history.push('/');
       } else {
         history.push(history.location.state.from);
       }
@@ -40,7 +40,7 @@ const UserLogIn = ({ setUser, prev, setPrev }) => {
 
     // check we have all rquired data
     if (!email || !password) {
-      setError("Veuillez remplir tous les champs");
+      setError('Veuillez remplir tous les champs');
     }
     // everything's fine, call server request !
     else {

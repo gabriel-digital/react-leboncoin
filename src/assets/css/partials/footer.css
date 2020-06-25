@@ -8,3 +8,11 @@ footer {
   padding: 5px 20px;
   margin-top: 50px;
 }
+footer a,
+footer a:visited,
+footer a:active,
+footer a:focus {
+  color: var(--alt-text-color);
+  text-decoration: underline;
+  font-weight: bold;
+}
