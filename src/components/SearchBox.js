@@ -26,8 +26,6 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
         onSubmit={(e) => {
           e.preventDefault();
           setUrl(query);
-          console.log(query);
-          console.log(url);
           fetchData();
         }}
       >
@@ -35,7 +33,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
           <input
             type="text"
             placeholder="Try something like 'cat', 'kitten, 'cute'"
-            value={query.title}
+            value={query.title || ''}
             onChange={(event) => {
               const obj = { ...query };
               obj.title = event.target.value;
@@ -50,7 +48,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
             <input
               type="text"
               placeholder="prix min"
-              value={query.priceMin}
+              value={query.priceMin || ''}
               onChange={(event) => {
                 const obj = { ...query };
                 obj.priceMin = event.target.value;
@@ -61,7 +59,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
             <input
               type="text"
               placeholder="prix max"
-              value={query.priceMax}
+              value={query.priceMax || ''}
               onChange={(event) => {
                 const obj = { ...query };
                 obj.priceMax = event.target.value;
@@ -71,6 +69,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
           </div>
           <div className="sort">
             <select
+              value={query.sort || ''}
               onChange={(event) => {
                 const obj = { ...query };
                 obj.sort = event.target.value;
