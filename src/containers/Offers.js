@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { formatDate } from '../utils';
 import Loader from '../components/Loader';
-import SearchBox from '../components/SearchBox';
+// import SearchBox from '../components/SearchBox';
+// import Pagination from '../components/Pagination';
 
 const Offers = () => {
   // init states
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState({});
-
-  // server request
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [query, setQuery] = useState({});
 
   // call server request once
   useEffect(() => {
@@ -21,9 +21,10 @@ const Offers = () => {
           `${process.env.REACT_APP_ENV}/offers/with-count`
         );
         setData(response.data);
+        console.log(response);
         setLoading(false);
       } catch (error) {
-        console.log(error.response.data.error.message);
+        console.log(error.message);
       }
     };
     fetchData();
@@ -36,12 +37,13 @@ const Offers = () => {
   ) : (
     <>
       <main className="offers">
-        <SearchBox
+        {/* <SearchBox
           setLoading={setLoading}
           setData={setData}
           query={query}
           setQuery={setQuery}
-        />
+          currentPage={currentPage}
+        /> */}
 
         {data.offers.length === 0 ? (
           <section className="noresults">
@@ -57,26 +59,46 @@ const Offers = () => {
           </section>
         ) : (
           <div className="results">
-            <ul className="container">
-              {data.offers.map((offer, index) => {
-                return (
-                  <li key={offer._id}>
-                    <Link to={`/offer/${offer._id}`}>
-                      {offer.picture && (
-                        <img src={offer.picture.secure_url} alt={offer.title} />
-                      )}
-                      <div className="offersContainer">
-                        <span>{offer.title}</span>
-                        <br />
-                        <span>{offer.price.toFixed(0)}&nbsp;€</span>
-                        <br />
-                        <span>{formatDate(offer.created)}</span>
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="container">
+              <ul>
+                {data.offers.map((offer, index) => {
+                  return (
+                    <li key={offer._id}>
+                      <Link to={`/offer/${offer._id}`}>
+                        {offer.picture && (
+                          <img
+                            src={offer.picture.secure_url}
+                            alt={offer.title}
+                          />
+                        )}
+                        <div className="offersContainer">
+                          <span>{offer.title}</span>
+                          <br />
+                          <span>{offer.price.toFixed(0)}&nbsp;€</span>
+                          <br />
+                          <span>{formatDate(offer.created)}</span>
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              {/* {data.pages > 1 && (
+                <>
+                  <p className="pages">
+                    {data.total}&nbsp;résultats&nbsp;: page&nbsp;{currentPage}
+                    &nbsp;sur&nbsp;{Math.ceil(data.total / 10)}
+                  </p>
+                  <Pagination
+                    totalPages={data.pages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    setData={setData}
+                    setLoading={setLoading}
+                  />
+                </>
+              )} */}
+            </div>
           </div>
         )}
       </main>

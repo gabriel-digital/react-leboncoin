@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const SearchBox = ({ setData, setLoading, query, setQuery }) => {
+const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
   let url = `${process.env.REACT_APP_ENV}/offers/with-count`;
 
   const setUrl = () => {
@@ -11,7 +11,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
       !query.title &&
       (query.priceMin || query.priceMax || query.sort)
     ) {
-      url = `${process.env.REACT_APP_ENV}/offers/with-count?priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
+      url = `${process.env.REACT_APP_ENV}/offers/with-count?riceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     } else {
       url = `${process.env.REACT_APP_ENV}/offers/with-count?title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     }
@@ -23,7 +23,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery }) => {
       setData(response.data);
       setLoading(false);
     } catch (error) {
-      console.log(error.response.data.error.message);
+      console.log(error.message);
     }
   };
   return (

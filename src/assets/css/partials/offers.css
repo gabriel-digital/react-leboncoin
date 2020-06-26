@@ -1,7 +1,12 @@
 /* offers list */
 .results .container {
+  flex-direction: column;
   max-width: 918px;
   margin: 0 auto;
+}
+.results .pages {
+  margin-bottom: 8px;
+  font-size: 12px;
 }
 .results ul li a {
   position: relative;
@@ -127,7 +132,7 @@ aside .userContainer button:hover {
 aside .userContainer hr {
   position: absolute;
   top: 100px;
-  content: "";
+  content: '';
   width: 100%;
   border-top: none;
   border-bottom: 1px solid #e4e8ec;
