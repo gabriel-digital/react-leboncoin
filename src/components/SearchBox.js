@@ -3,9 +3,15 @@ import axios from 'axios';
 
 const SearchBox = ({ setData, setLoading, query, setQuery }) => {
   let url = `${process.env.REACT_APP_ENV}/offers/with-count`;
+
   const setUrl = () => {
-    if (!query.title) {
+    if (!query.title && !query.priceMin && !query.priceMax && !query.sort) {
       url = `${process.env.REACT_APP_ENV}/offers/with-count`;
+    } else if (
+      !query.title &&
+      (query.priceMin || query.priceMax || query.sort)
+    ) {
+      url = `${process.env.REACT_APP_ENV}/offers/with-count?priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     } else {
       url = `${process.env.REACT_APP_ENV}/offers/with-count?title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     }
