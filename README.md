@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<img src="https://github.com/gabriel-digital/react-marvel/blob/master/preview/leboncoin-preview.gif" width="694">
+	<img src="https://github.com/gabriel-digital/react-leboncoin/blob/master/preview/leboncoin-preview.gif" width="694">
 </p>
 
 ## Overview
@@ -23,7 +23,7 @@ Clone this repository :
 
 ```
 git clone https://github.com/gabriel-digital/react-leboncoin.git
-cd react-marvel
+cd react-leboncoin
 ```
 
 Install packages :
