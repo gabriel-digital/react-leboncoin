@@ -61,7 +61,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
                 setQuery(obj);
               }}
             />
-            entre
+            et
             <input
               type="text"
               placeholder="prix max"

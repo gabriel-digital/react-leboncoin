@@ -3,18 +3,60 @@
   .container {
     max-width: 80%;
   }
-  header nav a:last-child {
+  header nav a.offers {
     margin-left: 20px;
   }
-  header nav a:last-child span {
+  header nav a.offers span {
     display: none;
   }
-  header button.connect span {
+  header button.connect span,
+  header a.connect span {
     display: none;
   }
   section,
   section.home {
-    max-width: calc(80% - 80px);
+    max-width: calc(100% - 40px);
+  }
+  .container.result {
+    flex-direction: column;
+  }
+  div.container.result > main {
+    width: 100%;
+    margin-right: 0;
+  }
+  div.container > aside {
+    width: 100%;
+  }
+  .loginContainter {
+    padding: 20px;
+  }
+  .signupContainer {
+    flex-direction: column-reverse;
+    padding: 20px;
+  }
+  .signupContainer div.whySignup {
+    flex: 1;
+    margin-right: 0;
+  }
+  .whySignup > span {
+    text-align: left;
+  }
+  .whySignup ul li {
+    background-position: center top !important;
+  }
+  .whySignup ul li {
+    padding-left: 0;
+    padding-top: 50px;
+  }
+  div.container.result.payment > main {
+    padding: 0 20px;
+    width: calc(100% - 40px);
+  }
+  .result.payment .offerContainer .offerInfo .checkout {
+    width: 100%;
+  }
+  .result.payment .offerContainer .offerInfo button {
+    width: 100%;
   }
 }
 @media screen and (max-width: 690px) {
@@ -24,16 +66,86 @@
   header nav a {
     margin-left: 10px;
   }
-  header nav a:nth-child(2) svg {
+  header nav a.publish svg {
     margin-right: 0;
   }
-  header nav a:nth-child(2) span {
+  header nav a.publish span {
     display: none;
+  }
+  h1 {
+    font-size: 1.2em;
+    line-height: 1.2em;
   }
   .home {
     text-align: center;
   }
   .home a {
     width: 100%;
+  }
+  .results ul li a {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+  .results ul li a .offersContainer span:last-child {
+    position: static;
+  }
+  .results ul li a img {
+    margin-top: 15px;
+  }
+
+  .result .offerContainer {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+  .result .offerContainer img {
+    margin-top: 20px;
+  }
+  .search {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+  .search form .mainSearch {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search form .mainSearch input[type='text'] {
+    padding: 12px 5px;
+    margin-right: 0;
+  }
+  .search form .filters {
+    flex-direction: column;
+  }
+  .search form .filters .price {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search form .filters .price input:last-child {
+    margin-top: 20px;
+  }
+  .search form .mainSearch input.action {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .search form .filters input {
+    width: 50%;
+  }
+  .search form .filters .sort {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .home a {
+    height: 80px;
+  }
+  .search form .mainSearch input[type='text'] {
+    font-size: 0.7em;
+  }
+  .signupContainer input[type='submit'] {
+    font-size: 0.8em;
   }
 }

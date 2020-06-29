@@ -25,17 +25,17 @@ nav a {
   border: none;
   font-size: 1em;
 }
-nav a:nth-child(2) {
+nav a.publish {
   padding: 6px 10px;
   background-color: var(--main-color);
   border-radius: 5px;
   color: #fff;
   transition: background-color 0.1s ease-in-out;
 }
-nav a:nth-child(2):hover {
+nav a.publish:hover {
   background-color: var(--main-color-hover);
 }
-nav a:last-child {
+nav a.offers {
   position: relative;
   background-color: transparent;
 }
@@ -102,4 +102,11 @@ header.isSearch:after {
   height: 60px;
   background-color: white;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+.navToggle {
+  display: none;
+  border: none;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
 }
