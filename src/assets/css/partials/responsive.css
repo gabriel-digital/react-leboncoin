@@ -1,13 +1,15 @@
 @media screen and (max-width: 890px) {
-  header .container,
   .container {
     max-width: 80%;
   }
-  header nav a.offers {
-    margin-left: 20px;
+  header nav a.publish svg {
+    margin-right: 0;
   }
-  header nav a.offers span {
+  header nav a.publish span {
     display: none;
+  }
+  header a.home svg {
+    width: 120px;
   }
   header button.connect span,
   header a.connect span {
@@ -60,21 +62,18 @@
   }
 }
 @media screen and (max-width: 690px) {
-  header .container {
-    justify-content: center;
-  }
-  header nav a {
-    margin-left: 10px;
-  }
-  header nav a.publish svg {
-    margin-right: 0;
-  }
-  header nav a.publish span {
-    display: none;
-  }
   h1 {
     font-size: 1.2em;
     line-height: 1.2em;
+  }
+  header a.home svg {
+    width: 90px;
+  }
+  nav a {
+    margin-left: 20px;
+  }
+  .connect {
+    margin-left: 20px;
   }
   .home {
     text-align: center;
@@ -137,10 +136,25 @@
     width: 100%;
     margin-top: 20px;
   }
+  .publishcontainer {
+    padding: 20px;
+  }
 }
 @media screen and (max-width: 360px) {
   .home a {
     height: 80px;
+  }
+  header a.home svg {
+    width: 60px;
+  }
+  nav a {
+    margin-left: 20px;
+  }
+  nav a.offers {
+    font-size: 0.8em;
+  }
+  .connect {
+    margin-left: 20px;
   }
   .search form .mainSearch input[type='text'] {
     font-size: 0.7em;
