@@ -9,10 +9,10 @@ const Pagination = ({
   setData,
   setLoading,
 }) => {
+  let url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}`;
+  // needs to be improved & factorised with Offers/SearchBox
   const fetchData = async () => {
     try {
-      let url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}`;
-
       if (!query.title && !query.priceMin && !query.priceMax && !query.sort) {
         console.log('a');
         url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}`;
@@ -26,8 +26,6 @@ const Pagination = ({
         console.log('c');
         url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}&title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
       }
-      console.log(currentPage);
-      console.log(url);
       const response = await axios.get(url);
       setData(response.data);
       setLoading(false);
@@ -43,7 +41,6 @@ const Pagination = ({
           onClick={() => {
             setCurrentPage((currentPage -= 1));
             fetchData();
-            console.log(currentPage);
           }}
         >
           &lt; page précédente
@@ -55,7 +52,6 @@ const Pagination = ({
           onClick={() => {
             setCurrentPage((currentPage += 1));
             fetchData();
-            console.log(currentPage);
           }}
         >
           page suivante &gt;

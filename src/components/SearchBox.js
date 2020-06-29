@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
   let url = `${process.env.REACT_APP_ENV}/offers/with-count`;
-
+  // needs to be improved & factorised with Offers/Pagination
   const setUrl = () => {
     if (!query.title && !query.priceMin && !query.priceMax && !query.sort) {
       url = `${process.env.REACT_APP_ENV}/offers/with-count`;
@@ -11,7 +11,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
       !query.title &&
       (query.priceMin || query.priceMax || query.sort)
     ) {
-      url = `${process.env.REACT_APP_ENV}/offers/with-count?riceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
+      url = `${process.env.REACT_APP_ENV}/offers/with-count?priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     } else {
       url = `${process.env.REACT_APP_ENV}/offers/with-count?title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
     }
@@ -31,7 +31,7 @@ const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setUrl(query);
+          setUrl();
           fetchData();
         }}
       >

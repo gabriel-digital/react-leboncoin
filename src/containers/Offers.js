@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { formatDate } from '../utils';
 import Loader from '../components/Loader';
-// import SearchBox from '../components/SearchBox';
-// import Pagination from '../components/Pagination';
+import SearchBox from '../components/SearchBox';
+import Pagination from '../components/Pagination';
 
 const Offers = () => {
   // init states
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [query, setQuery] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState({ title: '', priceMin: 0 });
 
   // call server request once
   useEffect(() => {
@@ -21,7 +21,6 @@ const Offers = () => {
           `${process.env.REACT_APP_ENV}/offers/with-count`
         );
         setData(response.data);
-        console.log(response);
         setLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -37,13 +36,13 @@ const Offers = () => {
   ) : (
     <>
       <main className="offers">
-        {/* <SearchBox
+        <SearchBox
           setLoading={setLoading}
           setData={setData}
           query={query}
           setQuery={setQuery}
           currentPage={currentPage}
-        /> */}
+        />
 
         {data.offers.length === 0 ? (
           <section className="noresults">
@@ -83,21 +82,24 @@ const Offers = () => {
                   );
                 })}
               </ul>
-              {/* {data.pages > 1 && (
-                <>
-                  <p className="pages">
-                    {data.total}&nbsp;résultats&nbsp;: page&nbsp;{currentPage}
-                    &nbsp;sur&nbsp;{Math.ceil(data.total / 10)}
-                  </p>
-                  <Pagination
-                    totalPages={data.pages}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    setData={setData}
-                    setLoading={setLoading}
-                  />
-                </>
-              )} */}
+              {data.pages > 1 ? (
+                <p className="pages">
+                  {data.total}&nbsp;résultats&nbsp;: page&nbsp;{currentPage}
+                  &nbsp;sur&nbsp;{Math.ceil(data.total / 10)}
+                </p>
+              ) : (
+                <p className="pages">{data.total}&nbsp;résultats</p>
+              )}
+              {data.pages > 1 && (
+                <Pagination
+                  totalPages={data.pages}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  query={query}
+                  setData={setData}
+                  setLoading={setLoading}
+                />
+              )}
             </div>
           </div>
         )}
