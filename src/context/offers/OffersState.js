@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import OffersContext from './offersContext';
 import OffersReducer from './offersReducer';
-import { SET_LOADING, SEARCH_OFFERS, PUBLISH_OFFERS } from '../types';
+import { SET_LOADING, SEARCH_OFFERS } from '../types';
 
 const OffersState = (props) => {
   const initialState = {

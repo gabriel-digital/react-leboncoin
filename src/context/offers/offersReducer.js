@@ -1,4 +1,4 @@
-import { SET_LOADING, SEARCH_OFFERS, PUBLISH_OFFERS, SET_PAGE } from '../types';
+import { SET_LOADING, SEARCH_OFFERS } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
