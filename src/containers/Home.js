@@ -18,7 +18,7 @@ const Home = (user) => {
           </span>
           &nbsp;pour le bootcamp LeReacteur
         </p>
-        <Link to="/offers/" className="action">
+        <Link to="/offers" className="action">
           Voir toutes les offres
         </Link>
         <Link to="/user/sign_up" className="action reverse">

@@ -1,33 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { formatDate } from '../utils';
 import Loader from '../components/Loader';
 import SearchBox from '../components/SearchBox';
 import Pagination from '../components/Pagination';
+import OffersContext from '../context/offers/offersContext';
 
 const Offers = () => {
-  // init states
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [query, setQuery] = useState({ title: '', priceMin: 0 });
-
+  const offersContext = useContext(OffersContext);
+  const { getOffers, offers, loading } = offersContext;
+  const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState({
+    title: '',
+    priceMin: 0,
+    priceMax: '',
+    sort: 'date-desc',
+  });
   // call server request once
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_ENV}/offers/with-count`
-        );
-        setData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
+    getOffers();
+    // eslint-disable-next-line
   }, []);
+  console.log(offers);
+  console.log('page:' + page);
 
   return loading ? (
     <main>
@@ -36,31 +31,25 @@ const Offers = () => {
   ) : (
     <>
       <main className="offers">
-        <SearchBox
-          setLoading={setLoading}
-          setData={setData}
-          query={query}
-          setQuery={setQuery}
-          currentPage={currentPage}
-        />
+        <SearchBox filters={filters} setFilters={setFilters} />
 
-        {data.offers.length === 0 ? (
+        {offers.offers?.length === 0 ? (
           <section className="noresults">
-            <img
-              src="https://jeffersoncountyhumanesociety.net/wp-content/uploads/2016/08/sad-grey-cat.jpg"
-              alt="chat triste car pas de résultats à la recherche"
-            />
             <h2>Il n'y a pas de résultats pour votre recherche :'(</h2>
             <p>
               Essayez de taper "cat", "cute" ou "kitten" dans la barre de
               recherche
             </p>
+            <img
+              src="https://jeffersoncountyhumanesociety.net/wp-content/uploads/2016/08/sad-grey-cat.jpg"
+              alt="chat triste car pas de résultats à la recherche"
+            />
           </section>
         ) : (
           <div className="results">
             <div className="container">
               <ul>
-                {data.offers.map((offer, index) => {
+                {offers.offers?.map((offer, index) => {
                   return (
                     <li key={offer._id}>
                       <Link to={`/offer/${offer._id}`}>
@@ -82,22 +71,20 @@ const Offers = () => {
                   );
                 })}
               </ul>
-              {data.pages > 1 ? (
+              {offers.pages > 1 ? (
                 <p className="pages">
-                  {data.total}&nbsp;résultats&nbsp;: page&nbsp;{currentPage}
-                  &nbsp;sur&nbsp;{Math.ceil(data.total / 10)}
+                  {offers.total}&nbsp;résultats&nbsp;: page&nbsp;{page}
+                  &nbsp;sur&nbsp;{Math.ceil(offers.total / 10)}
                 </p>
               ) : (
-                <p className="pages">{data.total}&nbsp;résultats</p>
+                <p className="pages">{offers.total}&nbsp;résultats</p>
               )}
-              {data.pages > 1 && (
+              {offers.pages > 1 && (
                 <Pagination
-                  totalPages={data.pages}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  query={query}
-                  setData={setData}
-                  setLoading={setLoading}
+                  filters={filters}
+                  page={page}
+                  setPage={setPage}
+                  total={offers.pages}
                 />
               )}
             </div>
