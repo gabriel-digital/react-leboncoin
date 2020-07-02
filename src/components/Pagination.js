@@ -1,57 +1,37 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import OffersContext from '../context/offers/offersContext';
 
-const Pagination = ({
-  totalPages,
-  currentPage,
-  setCurrentPage,
-  query,
-  setData,
-  setLoading,
-}) => {
-  let url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}`;
-  // needs to be improved & factorised with Offers/SearchBox
-  const fetchData = async () => {
-    try {
-      if (!query.title && !query.priceMin && !query.priceMax && !query.sort) {
-        console.log('a');
-        url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}`;
-      } else if (
-        !query.title &&
-        (query.priceMin || query.priceMax || query.sort)
-      ) {
-        console.log('b');
-        url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
-      } else {
-        console.log('c');
-        url = `${process.env.REACT_APP_ENV}/offers/with-count?page=${currentPage}&title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
-      }
-      const response = await axios.get(url);
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error.message);
+const Pagination = ({ filters, page, setPage, total }) => {
+  const offersContext = useContext(OffersContext);
+  const onClick = (direction) => {
+    let current = page;
+    if (direction === 'prev') {
+      current -= 1;
+      setPage(current);
     }
+    if (direction === 'next') {
+      current += 1;
+      setPage(current);
+    }
+    offersContext.searchOffers(current, filters);
   };
   return (
     <div className="pagination">
-      {currentPage > 1 && (
+      {page > 1 && (
         <button
           className="prev action"
-          onClick={() => {
-            setCurrentPage((currentPage -= 1));
-            fetchData();
+          onClick={(e) => {
+            onClick('prev');
           }}
         >
           &lt; page précédente
         </button>
       )}
-      {currentPage < totalPages && (
+      {page < total && (
         <button
           className="next action"
-          onClick={() => {
-            setCurrentPage((currentPage += 1));
-            fetchData();
+          onClick={(e) => {
+            onClick('next');
           }}
         >
           page suivante &gt;

@@ -1,49 +1,50 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import OffersContext from '../context/offers/offersContext';
 
-const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
-  let url = `${process.env.REACT_APP_ENV}/offers/with-count`;
-  // needs to be improved & factorised with Offers/Pagination
-  const setUrl = () => {
-    if (!query.title && !query.priceMin && !query.priceMax && !query.sort) {
-      url = `${process.env.REACT_APP_ENV}/offers/with-count`;
-    } else if (
-      !query.title &&
-      (query.priceMin || query.priceMax || query.sort)
-    ) {
-      url = `${process.env.REACT_APP_ENV}/offers/with-count?priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
+const SearchBox = ({ filters, setFilters, page }) => {
+  const offersContext = useContext(OffersContext);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!filters) {
+      alert('use filter');
     } else {
-      url = `${process.env.REACT_APP_ENV}/offers/with-count?title=${query.title}&priceMin=${query.priceMin}&priceMax=${query.priceMax}&sort=${query.sort}`;
-    }
-    return url;
-  };
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(url);
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error.message);
+      offersContext.searchOffers(page, filters);
     }
   };
+
+  const onChange = (e, val) => {
+    let obj = { ...filters };
+    console.log(filters);
+    switch (val) {
+      case 'title':
+        obj.title = e.target.value;
+        break;
+      case 'priceMin':
+        obj.priceMin = e.target.value;
+        break;
+      case 'priceMax':
+        obj.priceMax = e.target.value;
+        break;
+      case 'sort':
+        obj.sort = e.target.value;
+        break;
+
+      default:
+        break;
+    }
+    setFilters(obj);
+  };
+  console.log(filters);
   return (
     <section className="search">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setUrl();
-          fetchData();
-        }}
-      >
+      <form onSubmit={onSubmit}>
         <div className="mainSearch">
           <input
             type="text"
             placeholder="Try something like 'cat', 'kitten, 'cute'"
-            value={query.title || ''}
-            onChange={(event) => {
-              const obj = { ...query };
-              obj.title = event.target.value;
-              setQuery(obj);
+            value={filters?.title || ''}
+            onChange={(e) => {
+              onChange(e, 'title');
             }}
           />
           <input type="submit" value="Rechercher" className="action" />
@@ -54,32 +55,26 @@ const SearchBox = ({ setData, setLoading, query, setQuery, currentPage }) => {
             <input
               type="text"
               placeholder="prix min"
-              value={query.priceMin || ''}
-              onChange={(event) => {
-                const obj = { ...query };
-                obj.priceMin = event.target.value;
-                setQuery(obj);
+              value={filters?.priceMin || ''}
+              onChange={(e) => {
+                onChange(e, 'priceMin');
               }}
             />
             et
             <input
               type="text"
               placeholder="prix max"
-              value={query.priceMax || ''}
-              onChange={(event) => {
-                const obj = { ...query };
-                obj.priceMax = event.target.value;
-                setQuery(obj);
+              value={filters?.priceMax || ''}
+              onChange={(e) => {
+                onChange(e, 'priceMax');
               }}
             />
           </div>
           <div className="sort">
             <select
-              value={query.sort || ''}
-              onChange={(event) => {
-                const obj = { ...query };
-                obj.sort = event.target.value;
-                setQuery(obj);
+              value={filters?.sort || ''}
+              onChange={(e) => {
+                onChange(e, 'sort');
               }}
             >
               <option value="date-desc"> tri : Plus récentes</option>
