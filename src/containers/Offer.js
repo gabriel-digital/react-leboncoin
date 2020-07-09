@@ -4,12 +4,14 @@ import axios from 'axios';
 import { formatDate } from '../utils';
 import Loader from '../components/Loader';
 import { pictoShoppingCart } from '../pictos';
+import NotFound from './NotFound';
 
 const Offer = () => {
   // init states & get params from url
   const { id } = useParams();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, seterror] = useState(false);
   const history = useHistory();
   // call server request once
   useEffect(() => {
@@ -20,33 +22,23 @@ const Offer = () => {
           `${process.env.REACT_APP_ENV}/offer/${id}`
         );
         setData(response.data);
+        console.log(response.data);
         setLoading(false);
       } catch (error) {
-        console.log(error.response.data.error.message);
+        console.log(error.message);
+        seterror(true);
+        setLoading(false);
       }
     };
     fetchData();
   }, [id]);
-  // useEffect(() => {
-  //   // server request
-  //   const fetchUser = async () => {
-  //     try {
-  //       const sellerToSEarch = data.creator._id;
-  //       const response = await axios.get(
-  //         `${process.env.REACT_APP_ENV}/offers/user/${sellerToSEarch}`
-  //       );
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   fetchUser();
-  // }, [data]);
 
   return loading ? (
     <main>
       <Loader />
     </main>
+  ) : error ? (
+    <NotFound />
   ) : (
     <>
       <div className="container result">
