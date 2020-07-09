@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NotFound from './containers/NotFound';
 import Home from './containers/Home';
 import Offers from './containers/Offers';
 import Offer from './containers/Offer';
@@ -27,30 +28,31 @@ function App() {
       <Router>
         <Header setUser={setUser} tokenFromCookie={tokenFromCookie} />
         <Switch>
-          <Route path="/offer/publish">
+          <Route exact path="/offer/publish">
             <Publish tokenFromCookie={tokenFromCookie} user={user} />
           </Route>
-          <Route path="/offer/:id">
+          <Route exact path="/offer/:id">
             <Offer />
           </Route>
-          <Route path="/offers">
+          <Route exact path="/offers">
             <Offers />
           </Route>
-          <Route path="/payment">
+          <Route exact path="/payment">
             <Payment
               tokenFromCookie={tokenFromCookie}
               userFromCookie={userFromCookie}
             />
           </Route>
-          <Route path="/user/sign_up">
+          <Route exact path="/user/sign_up">
             <UserSignUp setUser={setUser} />
           </Route>
-          <Route path="/user/log_in">
+          <Route exact path="/user/log_in">
             <UserLogIn setUser={setUser} prev={prev} setPrev={setPrev} />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home user={userFromCookie} />
           </Route>
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </Router>
